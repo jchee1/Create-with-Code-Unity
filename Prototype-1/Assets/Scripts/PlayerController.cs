@@ -6,6 +6,11 @@ public class PlayerController : MonoBehaviour
 {
     private float speed = 22.0f;
     private float turnSpeed = 45.0f;
+
+    //camera switcher variables
+    public Camera mainCamera;
+    public Camera hoodCamera;
+    public KeyCode switchKey;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,5 +28,12 @@ public class PlayerController : MonoBehaviour
         transform.Translate(Vector3.forward * Time.deltaTime * speed * forwardInput);
         //turn vehicle
         transform.Rotate(Vector3.up, horizontalInput * turnSpeed * Time.deltaTime);
+
+        //if input then switch camera
+        if (Input.GetKeyDown(switchKey))
+        {
+            mainCamera.enabled = !mainCamera.enabled;
+            hoodCamera.enabled = !hoodCamera.enabled;
+        }
     }
 }
